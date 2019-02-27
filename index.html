@@ -12,9 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <style>
         body {
+            min-height: 100vh;
             background: url(https://media1.giphy.com/media/TxVVB6PfWMjE4/giphy.gif);
             background-repeat: no-repeat;
-            background-size: 100%;
+            background-size: cover;
+            background-attachment: scroll;
             font-family: 'Gloria Hallelujah', cursive;
             color: cornsilk;
             text-shadow: 2px 2px crimson;
@@ -43,24 +45,6 @@
             <input id="addShow" type="submit" value="ENGAGE!"></inputid>
         </form>
         <div id="buttons-view"></div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -68,8 +52,7 @@
     <!-- my JavaScript -->
     <script type="text/javascript" src="myjs.js"></script>
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
