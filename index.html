@@ -36,11 +36,11 @@
 <body>
     <h1></h1>
     <div class="jumbotron">
-        <h1 class="display-4"><b>Welcome to the Giphy Galaxy!<br>Button up Buttercup! It's Scyfy Showtime!</b></h1>
+        <h1 class="display-4"><b>Welcome to the Giphy Galaxy!<br>Button up Buttercup! It's Scifi Showtime!</b></h1>
         <p></p>
         <hr class="my-4">
         <form id="show-form">
-            <label for="show-input" class="lead">Add a Scyfy Show lil Homie! </label>
+            <label for="show-input" class="lead">Add a Scifi Show lil Homie! </label>
             <input type="text" id="pickAShow">
             <input id="addShow" type="submit" value="ENGAGE!"></inputid>
         </form>
@@ -50,13 +50,81 @@
 
 
     <!-- my JavaScript -->
-    <script type="text/javascript" src="myjs.js"></script>
+    <!----script type="text/javascript" src="myjs.js"></script-->
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        var shows = ["Firefly", "Star Trek", "Stargate SG1", "Battlestar Galactica"];
+
+       function displayShowGIF() {
+
+            var gif = $(this).attr("data");
+            var queryURL = "https://api.giphy.com/v1/gifs/?t=" + shows + "api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=scifi%20shows&limit=10&&lang=en";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+
+                console.log(response);
+
+                var gifDiv = $("<div class='gifs'>");
+                var rated = response.data.rating;
+                var pRate = $("<p>").text("Rating: " + rated);
+                var gifImage = response.images.fixed_height_still;
+                var gifStill = $("<img>").attr("src", gif);
+
+                gifDiv.append(pRate);
+
+                gifDiv.append(gifImage);
+
+                gifDiv.append(gifStill);
+
+                $("#gifsDiv").prepend(gifDiv);
+
+            });
+        }
+
+        function buttonMaker() {
+
+            $("#buttons-view").empty();
+
+            for (var i = 0; i < shows.length; i++) {
+
+                var a = $("<button>");
+
+                a.addClass("giphy-btn");
+
+                a.attr("data", shows[i]);
+
+                a.text(shows[i]);
+
+                $("#buttons-view").append(a);
+
+            }
+
+        }
+
+        $("#addShow").on("click", function (event) {
+
+            event.preventDefault();
+
+            var gif = $("#show-input");
+
+            shows.push(gif);
+
+            $.unique(shows);
+
+            buttonMaker();
+
+        });
+
+        $(document).on("click", "giphy-btn", displayShowGIF);
+
+        buttonMaker();
+
+    </script>
 
 </body>
 
