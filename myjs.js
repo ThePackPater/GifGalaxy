@@ -3,7 +3,7 @@ var shows = ["Firefly", "Star Trek", "Stargate SG1", "Battlestar Galactica"];
 
 function displayShowGIF() {
 
-    var gif = $(this).attr("data-name");
+    var gif = $(this).attr("data");
     var queryURL = "https://api.giphy.com/v1/gifs/?t=" + shows + "api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=scifi%20shows&limit=10&&lang=en";
 
     $.ajax({
@@ -36,22 +36,22 @@ function buttonMaker() {
 
     for (var i = 0; i < shows.length; i++) {
 
-        var x = $("<button>");
+        var a = $("<button>");
 
-        x.addclass("giphy btn btn-primary");
+        a.addclass("btn-btn");
 
-        x.attr("data-name", shows[i]);
+        a.attr("data", shows[i]);
 
-        x.text(shows[i]);
+        a.text(shows[i]);
 
-        $("#buttons-view").append(x);
+        $("#buttons-view").append(a);
 
     }
 
 }
 
 
-  $("#addShow").on("click", function(event) {
+  $("#show-input").on("click", function(event) {
     
     event.preventDefault();
     
@@ -65,7 +65,7 @@ function buttonMaker() {
 
   });
 
-  $(document).on("click", "giphy btn btn-primary", displayShowGIF);
+  $(document).on("click", ".btn-btn", displayShowGIF);
 
   buttonMaker();
 

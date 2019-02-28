@@ -37,16 +37,17 @@
     <h1></h1>
     <div class="jumbotron">
         <h1 class="display-4"><b>Welcome to the Giphy Galaxy!<br>Button up Buttercup! It's Scifi Showtime!</b></h1>
-        <p></p>
         <hr class="my-4">
-        <form id="show-form">
-            <label for="show-input" class="lead">Add a Scifi Show lil Homie! </label>
-            <input type="text" id="pickAShow">
-            <input id="addShow" type="submit" value="ENGAGE!"></inputid>
+        <h2><b>ADD A SHOW SPACE CADET! </b></h2>
+        <form id="show-form" class="form-inline">
+            <div>
+                <input type="text" id="show-input" placeholder="SCIFI TV SHOW">
+                <button type="submit" class="btn btn-primary btn-lg">ENGAGE!!</button>
+            </div>
         </form>
+        <hr class="my-4">
         <div id="buttons-view"></div>
     </div>
-
 
 
     <!-- my JavaScript -->
@@ -57,10 +58,10 @@
 
         var shows = ["Firefly", "Star Trek", "Stargate SG1", "Battlestar Galactica"];
 
-       function displayShowGIF() {
+        function displayShowGIF() {
 
             var gif = $(this).attr("data");
-            var queryURL = "https://api.giphy.com/v1/gifs/?t=" + shows + "api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=scifi%20shows&limit=10&&lang=en";
+            var queryURL = "https://api.giphy.com/v1/gifs/?" + shows + "api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=scifi%20shows&limit=10&&lang=en";
 
             $.ajax({
                 url: queryURL,
