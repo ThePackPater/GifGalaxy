@@ -1,36 +1,68 @@
 
-var shows = ["Firefly", "Star Trek", "Stargate SG1", "Battlestar Galactica"];
+var shows = ["Firefly", "Mork & Mindy", "X-Files", "Lexx", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
 
-function displayShowGIF() {
+function showGIF() {
 
-    var gif = $(this).attr("data");
-    var queryURL = "https://api.giphy.com/v1/gifs/?t=" + shows + "api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=scifi%20shows&limit=10&&lang=en";
+    var gif = $(this).attr("data-name");
 
     $.ajax({
-        url: queryURL,
+        url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=5",
         method: "GET"
+
     }).then(function (response) {
 
-        console.log(response);
+        var giphy = response.data;
 
-        var gifDiv = $("<div class='gifs'>");
-        var rated = response.rating;
-        var pRate = $("<p>").text("Rating: " + rated);
-        var gifImage = response.fixed_height_still;
-        var gifStill = $("<img>").attr("src", gif);
+        for (var i = 0; i < giphy.length; i++) {
 
-        gifDiv.append(pRate);
+            var gifDiv = $("<div class='gif'>");
 
-        gifDiv.append(gifImage);
+            var rating = giphy[i].rating;
 
-        gifDiv.append(gifStill);
+            console.log(rating);
 
-        $("#gifsDiv").prepend(gifDiv);
+            var ratingP = $("<p>").text(gif + " GIF Rated: " + rating);
+
+            gifDiv.append(ratingP);
+
+            var image = giphy[i].images.fixed_width_still.url;
+
+            var gifImage = $("<img>").attr("src", image);
+
+            gifImage.attr("still", giphy[i].images.fixed_width_still.url);
+
+            gifImage.attr("animated", giphy[i].images.fixed_height.url);
+
+            gifImage.attr("id", "gifImg")
+
+            gifDiv.append(gifImage);
+
+            $("#gifsDiv").prepend(gifDiv);
+
+        }
 
     });
+
 }
 
+$(document).on("click", "#gifImg", function () {
+
+    if ($(this).attr("src") === $(this).attr("still")) {
+
+        $(this).attr("src", $(this).attr("animated"))
+
+    } else if ($(this).attr("src") === $(this).attr("animated")) {
+
+        $(this).attr("src", $(this).attr("still"))
+
+    }
+
+});
+
+
 function buttonMaker() {
+
+    $("#show-input").empty();
 
     $("#buttons-view").empty();
 
@@ -38,38 +70,43 @@ function buttonMaker() {
 
         var a = $("<button>");
 
-        a.addclass("giphy-btn");
+        a.addClass("giphy-btn");
 
-        a.attr("data", shows[i]);
+        a.attr("data-name", shows[i]);
+
+        a.attr(shows[i]);
 
         a.text(shows[i]);
+
+        //console.log(shows[i])
 
         $("#buttons-view").append(a);
 
     }
-
 }
 
+buttonMaker()
 
-  $("#show-input").on("click", function(event) {
-    
+$("#addShow").on("click", function (event) {
+
     event.preventDefault();
-    
-    var gif = $("#show-input").val().trim();
 
-     shows.push(gif);
+    var show = $("#show-input").val().trim();
+
+    shows.push(show);
+
+    console.log(show);
 
     $.unique(shows);
-   
+
+    console.log(shows);
+
+    $("#show-input").val("");
+
     buttonMaker();
 
-  });
+});
 
-  $(document).on("click", ".giphy-btn", displayShowGIF);
+$(document).on("click", ".giphy-btn", showGIF);
 
-  buttonMaker();
-
-
-
-
-
+buttonMaker();
