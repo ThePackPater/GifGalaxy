@@ -75,7 +75,7 @@
         <h1 class="display-4"><b>Welcome to the Giphy Galaxy!<br>Button up Buttercup! It's Scifi Showtime!</b></h1>
         <hr class="my-4">
         
-        <h3><b>ADD A SHOW SPACE CADET! </b></h3>
+        <h4><b>ADD A SHOW SPACE CADET! </b></h4>
         <form id="show-form" class="form-inline">
             <div>
                 <input type="text" id="show-input" autocomplete="off" placeholder="SCIFI TV SHOW">
@@ -104,7 +104,7 @@
             var gif = $(this).attr("data-name");
 
             $.ajax({
-                url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=5",
+                url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=10",
                 method: "GET"
 
             }).then(function (response) {
