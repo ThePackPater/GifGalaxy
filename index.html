@@ -50,7 +50,7 @@
 
         #gifsDiv {
 
-            display:wrap;
+            display: wrap;
             float: left;
         }
     </style>
@@ -111,39 +111,35 @@
 
                     var gifImage = $("<img>").attr("src", image);
 
-                    console.log(gifImage);
+                    gifImage.attr("still", giphy[i].images.fixed_width_still.url);
+
+                    gifImage.attr("animated", giphy[i].images.fixed_height.url);
+
+                    gifImage.attr("id", "gifImg")
 
                     gifDiv.append(gifImage);
 
                     $("#gifsDiv").prepend(gifDiv);
 
-                    /*$(".gifImage").unbind("click");
-
-                    $(".gifImage").on("click", function () {
-
-                        if ($(this).attr("state") === "still") {
-
-                            $(this).attr("state", "animated");
-
-                            $(this).attr("src", $(this).attr("animated-data"));
-
-                        }
-
-                        else {
-
-                            $(this).attr("state", "still");
-
-                            $(this).attr("src", $(this).attr("still-data"));
-
-                        }
-
-                    });*/
                 }
 
-
-                });
+            });
 
         }
+
+        $(document).on("click", "#gifImg", function () {
+
+            if ($(this).attr("src") === $(this).attr("still")) {
+
+                $(this).attr("src", $(this).attr("animated"))
+
+            } else if ($(this).attr("src") === $(this).attr("animated")) {
+
+                $(this).attr("src", $(this).attr("still"))
+
+            }
+            
+        });
 
 
         function buttonMaker() {
