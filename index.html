@@ -77,7 +77,7 @@
 
         var shows = ["Firefly", "Star Trek", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
 
-        function displayShowGIF() {
+        function showGIF() {
 
             var gif = $(this).attr("data-name");
 
@@ -88,26 +88,49 @@
                 method: "GET"
 
             }).then(function (response) {
+
                 console.log(response);
+
                 var gifDiv = $("<div class='gif'>");
-                var rating = response.rating;
+
+                var rating = response.data.rating;
+
+                console.log(rating);
+
                 var ratingP = $("<p>").text("Rated: " + rating);
+
                 gifDiv.append(ratingP);
-                var image = response.url;
+
+                var image = response.data.url;
+
                 var gifImage = $("<img>").attr("src", image);
+
+                console.log(gifImage);
+
                 gifDiv.append(gifImage);
+
                 $("#gifsDiv").prepend(gifDiv);
 
                 /*$(".gifImage").unbind("click");
+
                 $(".gifImage").on("click", function () {
+
                     if ($(this).attr("state") === "still") {
+
                         $(this).attr("state", "animated");
+
                         $(this).attr("src", $(this).attr("animated-data"));
+
                     }
+
                     else {
+
                         $(this).attr("state", "still");
+
                         $(this).attr("src", $(this).attr("still-data"));
+
                     }
+
                 });*/
             });
         }
@@ -159,11 +182,11 @@
 
         });
 
-        $(document).on("click", ".movie-btn", displayShowGIF);
+        $(document).on("click", ".giphy-btn", showGIF);
 
         buttonMaker();
 
-
+       
 
     </script>
 
