@@ -1,12 +1,11 @@
-
-var shows = ["Firefly", "Mork & Mindy", "X-Files", "Farscape", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
+var shows = ["Firefly", "Mork & Mindy", "X-Files", "Farscape", "Star Trek", "Orphan Black", "Stargate SG1", "Stranger Things", "Battlestar Galactica", "The Orville", "Lost in Space", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
 
 function showGIF() {
 
     var gif = $(this).attr("data-name");
 
     $.ajax({
-        url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=5",
+        url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=10",
         method: "GET"
 
     }).then(function (response) {
