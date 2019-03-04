@@ -107,7 +107,7 @@
 
                     gifDiv.append(ratingP);
 
-                    var image = giphy[i].images.original.url;
+                    var image = giphy[i].images.fixed_width_still.url;
 
                     var gifImage = $("<img>").attr("src", image);
 
@@ -138,7 +138,7 @@
                 $(this).attr("src", $(this).attr("still"))
 
             }
-            
+
         });
 
 
