@@ -47,6 +47,12 @@
             width: 250px;
             border-radius: 10px;
         }
+
+        #gifsDiv {
+
+            display:wrap;
+            float: left;
+        }
     </style>
     <title>Giphy Index!</title>
 </head>
@@ -82,7 +88,7 @@
             var gif = $(this).attr("data-name");
 
             $.ajax({
-                url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=4",
+                url: "https://api.giphy.com/v1/gifs/search?api_key=UgvnXDeFmvBkNefMzHfK5ZhsJlT0L0ex&q=" + gif + "&limit=3",
                 method: "GET"
 
             }).then(function (response) {
@@ -111,86 +117,86 @@
 
                     $("#gifsDiv").prepend(gifDiv);
 
+                    /*$(".gifImage").unbind("click");
+
+                    $(".gifImage").on("click", function () {
+
+                        if ($(this).attr("state") === "still") {
+
+                            $(this).attr("state", "animated");
+
+                            $(this).attr("src", $(this).attr("animated-data"));
+
+                        }
+
+                        else {
+
+                            $(this).attr("state", "still");
+
+                            $(this).attr("src", $(this).attr("still-data"));
+
+                        }
+
+                    });*/
                 }
 
-            });
+
+                });
 
         }
 
 
-            function buttonMaker() {
+        function buttonMaker() {
 
-                $("#show-input").empty();
+            $("#show-input").empty();
 
-                $("#buttons-view").empty();
+            $("#buttons-view").empty();
 
-                for (var i = 0; i < shows.length; i++) {
+            for (var i = 0; i < shows.length; i++) {
 
-                    var a = $("<button>");
+                var a = $("<button>");
 
-                    a.addClass("giphy-btn");
+                a.addClass("giphy-btn");
 
-                    a.attr("data-name", shows[i]);
+                a.attr("data-name", shows[i]);
 
-                    a.attr(shows[i]);
+                a.attr(shows[i]);
 
-                    a.text(shows[i]);
+                a.text(shows[i]);
 
-                    //console.log(shows[i])
+                //console.log(shows[i])
 
-                    $("#buttons-view").append(a);
+                $("#buttons-view").append(a);
 
-                }
             }
+        }
 
-            buttonMaker()
+        buttonMaker()
 
-            $("#addShow").on("click", function (event) {
+        $("#addShow").on("click", function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                var show = $("#show-input").val().trim();
+            var show = $("#show-input").val().trim();
 
-                shows.push(show);
+            shows.push(show);
 
-                console.log(show);
+            console.log(show);
 
-                $.unique(shows);
+            $.unique(shows);
 
-                console.log(shows);
+            console.log(shows);
 
-                $("#show-input").val("");
-
-                buttonMaker();
-
-            });
-
-            $(document).on("click", ".giphy-btn", showGIF);
+            $("#show-input").val("");
 
             buttonMaker();
 
-            
-                    /*$(".gifImage").unbind("click");
-    
-                    $(".gifImage").on("click", function () {
-    
-                        if ($(this).attr("state") === "still") {
-    
-                            $(this).attr("state", "animated");
-    
-                            $(this).attr("src", $(this).attr("animated-data"));
-    
-                        }
-    
-                        else {
-    
-                            $(this).attr("state", "still");
-    
-                            $(this).attr("src", $(this).attr("still-data"));
-    
-                        }
-    
-                    });*/
+        });
+
+        $(document).on("click", ".giphy-btn", showGIF);
+
+        buttonMaker();
+
 
 
 
