@@ -38,7 +38,7 @@ function buttonMaker() {
 
         var a = $("<button>");
 
-        a.addclass("btn-btn");
+        a.addclass("giphy-btn");
 
         a.attr("data", shows[i]);
 
@@ -65,7 +65,7 @@ function buttonMaker() {
 
   });
 
-  $(document).on("click", ".btn-btn", displayShowGIF);
+  $(document).on("click", ".giphy-btn", displayShowGIF);
 
   buttonMaker();
 
