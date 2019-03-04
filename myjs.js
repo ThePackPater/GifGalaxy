@@ -1,5 +1,5 @@
 
-var shows = ["Firefly", "Mork & Mindy", "X-Files", "Lexx", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
+var shows = ["Firefly", "Mork & Mindy", "X-Files", "Farscape", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
 
 function showGIF() {
 
@@ -59,7 +59,6 @@ $(document).on("click", "#gifImg", function () {
 
 });
 
-
 function buttonMaker() {
 
     $("#show-input").empty();
@@ -108,5 +107,7 @@ $("#addShow").on("click", function (event) {
 });
 
 $(document).on("click", ".giphy-btn", showGIF);
+
+event.preventDefault();
 
 buttonMaker();

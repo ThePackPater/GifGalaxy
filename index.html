@@ -42,6 +42,17 @@
             box-shadow: inset 0 0 0 20px darkblue;
         }
 
+        .btn-btn {
+            color: antiquewhite;
+            background-color: rgb(56, 56, 223);
+            border-radius: 10px;
+            margin: 3px;
+        }
+
+        .btn-btn:hover {
+            box-shadow: inset 0 0 0 20px darkblue;
+        }
+
         #show-input {
             height: 45px;
             width: 250px;
@@ -53,8 +64,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
-            float: left;
-            margin: 50px;
+
         }
     </style>
     <title>Giphy Index!</title>
@@ -68,14 +78,14 @@
         <form id="show-form" class="form-inline">
             <div>
                 <input type="text" id="show-input" autocomplete="off" placeholder="SCIFI TV SHOW">
-                <button type="submit" id="addShow" class="btn btn-primary btn-lg">ENGAGE!!</button>
+                <button type="submit" id="addShow" class="btn-btn btn-primary btn-lg">ENGAGE!!</button>
             </div>
         </form>
         <hr class="my-4">
         <div id="buttons-view"></div>
     </div>
     <div class="jumbotron">
-        <div id="gifsDiv" class="container"></div>
+        <div id="gifsDiv" class="container-fluid"></div>
     </div>
 
     <!-- my JavaScript -->
@@ -84,7 +94,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-        var shows = ["Firefly", "Mork & Mindy", "X-Files", "Lexx", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
+        var shows = ["Firefly", "Mork & Mindy", "X-Files", "Farscape", "Star Trek", "Orphan Black", "Stargate SG1", "Twilight Zone", "Battlestar Galactica", "Torchwood", "Land of the Lost", "Black Mirror", "Outer Limits", "Supernatural", "Dr Who"];
 
         function showGIF() {
 
@@ -144,7 +154,6 @@
 
         });
 
-
         function buttonMaker() {
 
             $("#show-input").empty();
@@ -194,10 +203,9 @@
 
         $(document).on("click", ".giphy-btn", showGIF);
 
+        event.preventDefault();
+
         buttonMaker();
-
-
-
 
     </script>
 
